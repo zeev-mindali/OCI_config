@@ -15,6 +15,9 @@ management:
     hystrix:
       stream:
         enabled: true
+    web:
+      exposure:
+        include: hystrix.stream
   security: 
     enabled: false
 hystrix:
