@@ -47,4 +47,4 @@ management:
         include: hystrix.stream, info, health
 hystrix:
    dashboard:
-       proxyStreamAllowList: *
+       proxyStreamAllowList: "*"
