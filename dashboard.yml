@@ -13,3 +13,6 @@ spring:
 management:
   security: 
     enabled: false
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
