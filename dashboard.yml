@@ -11,7 +11,7 @@ spring:
         management: 
           enabled: true
 management:
-  endpoint:
+  endpoints:
     hystrix:
       stream:
         enabled: true
@@ -22,4 +22,4 @@ management:
     enabled: false
 hystrix:
   dashboard:
-    proxy-stream-allow-list: "localhost"
+    proxy-stream-allow-list: "*"
