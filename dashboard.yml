@@ -11,6 +11,10 @@ spring:
         management: 
           enabled: true
 management:
+  endpoint:
+    hystrix:
+      stream:
+        enabled: true
   security: 
     enabled: false
 hystrix:
