@@ -5,6 +5,16 @@ spring:
         locator:
           enabled: true
       routes:
+       - id: serviceBooks
+        uri: lb://service-Books
+        predicates:
+        - Path=/books/**
+        filters:
+        - RewritePath=/books/(?<segment>.*), /$\{segment}
+        - name: Hystrix
+          args:
+            name: monitor-books
+            fallbackUri: forward:/fallback/serviceBooks
       - id: serviceA
         uri: lb://service-A
         predicates:
