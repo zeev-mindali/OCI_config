@@ -41,7 +41,7 @@ spring:
         predicates:
         - Path=/weather/**
         filters:
-        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
+        - RewritePath=/weather/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
             name: monitor-weather
