@@ -20,7 +20,6 @@ spring:
         predicates:
         - Path=/srva/**
         filters:
-        filters:
         - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
