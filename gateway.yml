@@ -5,7 +5,7 @@ spring:
         locator:
           enabled: true
       routes:
-       - id: serviceBooks
+      - id: serviceBooks
         uri: lb://service-Books
         predicates:
         - Path=/books/**
