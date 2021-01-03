@@ -20,6 +20,7 @@ spring:
         predicates:
         - Path=/srva/**
         filters:
+        filters:
         - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
@@ -43,7 +44,7 @@ spring:
         - RewritePath=/srvb/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-srvB
+            name: monitor-weather
             fallbackUri: forward:/fallback/serviceWeather  
       - id: MQActivityService
         uri: lb://activity
