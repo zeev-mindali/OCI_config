@@ -5,7 +5,7 @@ spring:
   cloud:
     consul:
       discovery:
-        instanceId: ServiceA
+        instanceId: PrivateCar
         health-check-interval: 5s
       config:
         management: 
