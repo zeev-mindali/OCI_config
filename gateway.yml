@@ -15,7 +15,7 @@ spring:
           args:
             name: monitor-cars
             fallbackUri: forward:/fallback/serviceBooks
-      - id: serviceA
+      - id: serviceCar
         uri: lb://car
         predicates:
         - Path=/car/**
@@ -24,7 +24,7 @@ spring:
         - name: Hystrix
           args:
             name: monitor-car
-            fallbackUri: forward:/fallback/serviceA
+            fallbackUri: forward:/fallback/serviceCar
       - id: truck
         uri: lb://truck
         predicates:
@@ -44,7 +44,7 @@ spring:
         - name: Hystrix
           args:
             name: monitor-bike
-            fallbackUri: forward:/fallback/serviceWeather  
+            fallbackUri: forward:/fallback/serviceBike  
         id: ServiceRecall
         uri: lb://recall
         predicates:
@@ -54,13 +54,17 @@ spring:
         - name: Hystrix
           args:
             name: monitor-recall
-            fallbackUri: forward:/fallback/serviceWeather  
-      - id: MQActivityService
+            fallbackUri: forward:/fallback/serviceRecall
+      - id: ServiceOffroad
         uri: lb://offroad
         predicates:
         - Path=/offroad/**
         filters:
-        - RewritePath=/act/(?<segment>.*), /$\{segment} 
+        - RewritePath=/offroad/(?<segment>.*), /$\{segment}
+        - name: Hystrix
+          args:
+            name: monitor-recall
+            fallbackUri: forward:/fallback/serviceOffroad
     consul:
       discovery:
         instanceId: Gateway
