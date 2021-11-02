@@ -5,50 +5,60 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: serviceBooks
-        uri: lb://service-Books
+      - id: carFound
+        uri: lb://CarFound
         predicates:
-        - Path=/books/**
+        - Path=/cars/**
         filters:
-        - RewritePath=/books/(?<segment>.*), /$\{segment}
+        - RewritePath=/cars/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-books
+            name: monitor-cars
             fallbackUri: forward:/fallback/serviceBooks
       - id: serviceA
-        uri: lb://service-A
+        uri: lb://car
         predicates:
-        - Path=/srva/**
+        - Path=/car/**
         filters:
-        - RewritePath=/srva/(?<segment>.*), /$\{segment}
+        - RewritePath=/car/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-srvA
+            name: monitor-car
             fallbackUri: forward:/fallback/serviceA
-      - id: ServiceB
-        uri: lb://service-B
+      - id: truck
+        uri: lb://truck
         predicates:
-        - Path=/srvb/**
+        - Path=/truck/**
         filters:
-        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
+        - RewritePath=/truck/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-srvB
-            fallbackUri: forward:/fallback/serviceB  
-      - id: ServiceWeather
-        uri: lb://service-Weather
+            name: monitor-truck
+            fallbackUri: forward:/fallback/truck  
+      - id: ServiceBike
+        uri: lb://bike
         predicates:
-        - Path=/weather/**
+        - Path=/bike/**
         filters:
-        - RewritePath=/weather/(?<segment>.*), /$\{segment}
+        - RewritePath=/bike/(?<segment>.*), /$\{segment}
         - name: Hystrix
           args:
-            name: monitor-weather
+            name: monitor-bike
+            fallbackUri: forward:/fallback/serviceWeather  
+        id: ServiceRecall
+        uri: lb://recall
+        predicates:
+        - Path=/recall/**
+        filters:
+        - RewritePath=/recall/(?<segment>.*), /$\{segment}
+        - name: Hystrix
+          args:
+            name: monitor-recall
             fallbackUri: forward:/fallback/serviceWeather  
       - id: MQActivityService
-        uri: lb://activity
+        uri: lb://offroad
         predicates:
-        - Path=/act/**
+        - Path=/offroad/**
         filters:
         - RewritePath=/act/(?<segment>.*), /$\{segment} 
     consul:
